@@ -1,0 +1,105 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+* {
+  transition: 0.5s all ease;
+}
+
+li,
+button {
+  cursor: pointer;
+}
+
+.pageNav {
+  background-color: #21345c;
+  position: fixed;
+  left: 0;
+  top: calc(90px + 2rem);
+  /* height: calc(100vh - (90px + 2rem) - 2rem); */
+  width: 20vw;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  /* border: 1px solid white; */
+}
+
+.page-Set {
+  padding: 1rem 0 1rem 0;
+  /* border: 1px solid rosybrown; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.page-Set input[type="number"] {
+  -moz-appearance: textfield;
+  width: 6rem;
+  height: 2rem;
+  padding: 0;
+  margin: auto 0 auto 0;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  background-color: #294073;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.page-Set button {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  background-color: #294073;
+  margin: auto 0 auto 0;
+}
+
+.page-Set button:hover {
+  border: 2px solid rgb(255, 255, 255);
+  transition: 0.5s all ease;
+}
+
+ion-icon {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: auto;
+  /* border: 1px solid red; */
+}
+
+.fragment-Set {
+  /* border: 1px solid white; */
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem 2.5rem 1rem;
+  /* overflow: hidden; */
+}
+
+.fragment-Set ul {
+  /* border: 1px solid white; */
+  padding: 0;
+}
+
+.fragment-Set li {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  list-style: none;
+  margin: auto auto auto auto;
+  color: aliceblue;
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem 0 1rem 0;
+}
+
+.fragment-Set li:hover {
+  border: 2px solid rgb(255, 255, 255);
+  background-color: #294073;
+  transition: 0.5s all ease;
+}

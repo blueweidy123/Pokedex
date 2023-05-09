@@ -1,0 +1,58 @@
+body {
+  background: #172731;
+}
+
+* {
+  transition: 0.5s all ease;
+}
+
+.content {
+  /* border: 1px solid #fff; */
+  width: calc(80vw - 1rem);
+  margin: calc(90px + 2rem) 0 2rem auto;
+}
+
+.pokelist {
+  /* border: 1px solid red; */
+  padding: 0 1rem 0 1rem;
+}
+
+table {
+  width: 100%;
+  margin: 8px;
+  padding: 8px;
+  margin: auto;
+  border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;
+  /* margin-top: calc(90px + 2rem); */
+}
+
+th {
+  border-bottom: 4px solid #172731;
+  padding: 1.5rem 0 1.5rem 0;
+}
+
+td {
+  border-bottom: 2px solid #172731;
+  /* border: 1px solid red; */
+}
+
+tr {
+  color: aliceblue;
+}
+
+tr:hover {
+  background: #223c4d;
+}
+
+a {
+  color: #fff;
+}
+
+th,
+td {
+  text-align: center;
+  background: #21345c;
+  /* border-bottom: 2px solid white;  */
+}
