@@ -21,6 +21,7 @@ import "./components/NavBarStyle.css";
 import "./components/pageNav.css";
 import "./components/placeholder.css";
 import "./components/homeStyle.css";
+import "./components/SwitchTheme.css";
 
 function App() {
   const [page, setPage] = useState(1);

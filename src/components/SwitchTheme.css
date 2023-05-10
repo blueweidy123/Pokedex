@@ -1,16 +1,3 @@
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.f-placeholder {
-  width: 100%;
-  height: 200px;
-  border: 3px solid salmon;
-}
-
 :root {
   --light: #d8dbe0;
   --dark: #28292c;
@@ -18,41 +5,23 @@
   --link-hover: rgb(24, 94, 82);
 }
 
-.f2,
-.f3,
-.f4,
-.f5 {
-  width: calc(100% - 4rem);
-  height: 90vh;
-  padding: 0 1rem 0 1rem;
-  border-radius: 1.5rem;
-  margin: 1rem;
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.f2 {
-  background-color: salmon;
-}
-.f3 {
-  background-color: cadetblue;
-}
-.f4 {
-  background-color: palevioletred;
-}
-.f5 {
-  background-color: seagreen;
-}
-
-.testf3 {
-  /* padding: 200px;
-  margin-top: 100px;*/
-  /* border: 1px solid red; */
-}
-/* 
-.toggle-switch {
+.themeSwitch {
   position: relative;
   width: 100px;
-  padding-top: 1rem;
-  border: 1px solid blueviolet;
+  /* padding-top: 1rem; */
+  /* border: 1px solid blueviolet; */
+}
+
+input:checked {
+  --light: #28292c;
+  --dark: #d8dbe0;
 }
 
 label {
@@ -62,6 +31,12 @@ label {
   background-color: var(--dark);
   border-radius: 50px;
   cursor: pointer;
+  /* border: 1px solid blueviolet; */
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
 
 input {
@@ -89,7 +64,7 @@ input:checked ~ .slider {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  box-shadow: inset 11px -5px 0px 0px var(--light);
+  box-shadow: inset 8px -5px 0px 1px var(--light);
   background-color: var(--dark);
   transition: 0.3s;
 }
@@ -98,4 +73,4 @@ input:checked ~ .slider::before {
   transform: translateX(36px);
   background-color: var(--dark);
   box-shadow: none;
-} */
+}

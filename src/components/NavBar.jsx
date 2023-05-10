@@ -32,6 +32,15 @@ class NavBar extends Component {
             <li>
               <NavLink to="/ph3">PlaceHolder3</NavLink>
             </li>
+            <li>
+              <NavLink to="/ph3">PlaceHolder3</NavLink>
+            </li>
+            <div className="themeSwitch">
+              <label>
+                <input type="checkbox" />
+                <span className="slider"></span>
+              </label>
+            </div>
           </ul>
         </div>
       </div>
