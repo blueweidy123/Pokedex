@@ -19,10 +19,10 @@
   /* border: 1px solid blueviolet; */
 }
 
-input:checked {
+/* input:checked {
   --light: #28292c;
   --dark: #d8dbe0;
-}
+} */
 
 label {
   position: absolute;
