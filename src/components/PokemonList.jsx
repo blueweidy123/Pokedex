@@ -19,7 +19,6 @@ function PokemonList({ limit, page }) {
     }
   };
 
-  //06/23/2023
 
   useEffect(() => {
     fetchData(page - 1, limit);
