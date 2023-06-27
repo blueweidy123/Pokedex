@@ -1,5 +1,5 @@
 body {
-  background: #172731;
+  background: var(--bg);
 }
 
 * {
@@ -53,6 +53,6 @@ a {
 th,
 td {
   text-align: center;
-  background: #21345c;
+  background: var(--ele);
   /* border-bottom: 2px solid white;  */
 }

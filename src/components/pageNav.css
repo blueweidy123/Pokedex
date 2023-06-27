@@ -37,7 +37,6 @@ button {
 }
 
 .page-Set input[type="number"] {
-  -moz-appearance: textfield;
   width: 6rem;
   height: 2rem;
   padding: 0;
@@ -45,9 +44,10 @@ button {
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   text-align: center;
-  background-color: #294073;
+  background-color: var(--ele);
   font-size: 1.5rem;
   color: #fff;
+  cursor: pointer;
 }
 
 .page-Set button {

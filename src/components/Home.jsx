@@ -34,7 +34,7 @@ class Home extends Component {
     // } else {
     //   bg.style.transform = "none";
     // }
-    if (scrollPosition > 0) {
+    if (scrollPosition > -10) {
       pokeballTop.style.top = -scrollPosition * 5 + 100 + "px";
       coverT.style.top = -scrollPosition * 5 + "px";
       pokeballBot.style.top = scrollPosition * 5 + 100 + "px";

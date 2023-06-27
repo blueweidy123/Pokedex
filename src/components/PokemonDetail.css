@@ -1,0 +1,27 @@
+.pd-container {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+}
+
+.p-preview {
+  width: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* margin: 6rem 1rem 1rem auto; */
+  background-color: var(--ele);
+  border-radius: 1rem;
+}
+.p-preview img {
+  width: 200px;
+  height: 200px;
+}
+
+.pd-details table {
+  width: 100%;
+  background-color: red;
+  padding: 1rem;
+}

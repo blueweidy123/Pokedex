@@ -39,7 +39,7 @@ label {
   margin: auto;
 }
 
-input {
+.themeSwitch input {
   position: absolute;
   display: none;
 }

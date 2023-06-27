@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "./PokemonDetail.css"
+import NavBar from "./NavBar";
 
 function PokemonDetail() {
   const { pokemonName } = useParams();
@@ -85,14 +87,21 @@ function PokemonDetail() {
   }
 
   return (
-    <div>
-      <h1>{pokemon.name}</h1>
-      <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-      <table>
-        <tbody>{tableRows}</tbody>
-      </table>
-      {nestedObjectTable && [nestedObjectTable]}
-    </div>
+    <>
+      <NavBar></NavBar>
+      <main className="pd-container">
+        <section className="p-preview">
+          <h1>{pokemon.name}</h1>
+          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+        </section>
+        <section className="pd-details">
+          <table>
+            <tbody>{tableRows}</tbody>
+          </table>
+          {nestedObjectTable && [nestedObjectTable]}
+        </section>
+      </main>
+    </>
   );
 }
 

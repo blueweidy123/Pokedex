@@ -52,6 +52,7 @@ class PageNav extends Component {
             <li onClick={() => this.setActiveFragment(4)}>fragment 5</li>
           </ul>
         </div>
+
         <div className="page-Set">
           <button onClick={this.handlePreviousPage}>
             <ion-icon name="chevron-back-outline"></ion-icon>
@@ -62,6 +63,7 @@ class PageNav extends Component {
             value={page}
             onChange={this.handlePageInputChange}
           ></input>
+
           <button onClick={this.handleNextPage}>
             <ion-icon name="chevron-forward-outline"></ion-icon>
           </button>
