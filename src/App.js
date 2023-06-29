@@ -6,21 +6,23 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./App.css";
-import Home from "./components/Home";
-import PokemonList from "./components/PokemonList";
-import NavBar from "./components/NavBar";
-import PageNav from "./components/PageNav";
-import F2placeHolder from "./components/F2placeHolder";
-import F3placeHolder from "./components/F3placeHolder";
-import F4placeHolder from "./components/F4placeHolder";
-import F5placeHolder from "./components/F5placeHolder";
-import PokemonDetail from "./components/PokemonDetail";
+import Home from "./components/Home/Home";
+import PokemonList from "./components/ListPokemon/PokemonList";
 
-import "./components/listStyle.css";
-import "./components/NavBarStyle.css";
-import "./components/pageNav.css";
-import "./components/placeholder.css";
-import "./components/homeStyle.css";
+import NavBar from "./components/Navbar/NavBar";
+import PageNav from "./components/PageNav/PageNav";
+import F2placeHolder from "./components/PlaceHolder/F2placeHolder";
+import F3placeHolder from "./components/PlaceHolder/F3placeHolder";
+import F4placeHolder from "./components/PlaceHolder/F4placeHolder";
+import F5placeHolder from "./components/PlaceHolder/F5placeHolder";
+
+import PokemonDetail from "./components/PokemonDetails/PokemonDetail";
+
+
+
+
+import "./components/PlaceHolder/placeholder.css"
+
 import "./components/SwitchTheme.css";
 
 function App() {

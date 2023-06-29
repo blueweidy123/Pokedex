@@ -33,13 +33,12 @@ body {
   list-style: none;
   display: flex;
   flex-direction: row;
-  /* border: 2px solid #fff; */
 }
 
 .nav-elements li {
   margin-left: 1rem;
   color: white;
-  border: 2px solid #1c2f3c4d;
+  border: 2px solid transparent;
   padding: 8px 1rem 8px 1rem;
   border-radius: 8px;
   overflow: hidden;
@@ -50,7 +49,6 @@ body {
 }
 
 .nav-elements li:hover {
-  font-size: 1.1rem;
   border: 2px solid #ffffff;
   transition: 0.5s all ease;
 }

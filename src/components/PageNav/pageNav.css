@@ -13,6 +13,10 @@ button {
   cursor: pointer;
 }
 
+.fragments {
+  overflow: hidden;
+}
+
 .pageNav {
   background-color: #21345c;
   position: fixed;
@@ -48,6 +52,13 @@ button {
   font-size: 1.5rem;
   color: #fff;
   cursor: pointer;
+  /* background-color: red; */
+}
+
+.page-Set input[type="number"]:focus {
+  border: 2px solid rgb(255, 255, 255);
+  background-color: #294073;
+  transition: 0.5s all ease;
 }
 
 .page-Set button {
@@ -84,6 +95,7 @@ ion-icon {
 .fragment-Set ul {
   /* border: 1px solid white; */
   padding: 0;
+  margin-top: 0;
 }
 
 .fragment-Set li {
@@ -94,8 +106,8 @@ ion-icon {
   margin: auto auto auto auto;
   color: aliceblue;
   text-align: center;
-  padding: 1rem;
-  margin: 1rem 0 1rem 0;
+  padding: 0.8rem;
+  margin: 0.5rem 1rem;
 }
 
 .fragment-Set li:hover {

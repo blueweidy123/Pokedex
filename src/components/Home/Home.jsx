@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import NavBar from "./NavBar";
-import pokeballTop from "../images/pbt.png";
-import pokeballBot from "../images/pbb.png";
-import bg from "../images/qtEkbi.png";
-import F2placeHolder from "../components/F2placeHolder";
-import F3placeHolder from "../components/F3placeHolder";
-import F4placeHolder from "../components/F4placeHolder";
-import F5placeHolder from "../components/F5placeHolder";
+import NavBar from "../Navbar/NavBar";
+import pokeballTop from "../../images/pbt.png";
+import pokeballBot from "../../images/pbb.png";
+import bg from "../../images/qtEkbi.png";
+import F2placeHolder from "../PlaceHolder/F2placeHolder";
+import F3placeHolder from "../PlaceHolder/F3placeHolder";
+import F4placeHolder from "../PlaceHolder/F4placeHolder";
+import F5placeHolder from "../PlaceHolder/F5placeHolder";
+import "./homeStyle.css";
 
 class Home extends Component {
   componentDidMount() {

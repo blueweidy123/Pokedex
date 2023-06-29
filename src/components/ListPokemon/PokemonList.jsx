@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import pokemonDAO from "../DAO/pokemonDAO";
+import pokemonDAO from "../../DAO/pokemonDAO";
 import { Link } from "react-router-dom";
+import "./listStyle.css";
 
 function PokemonList({ limit, page }) {
   const [pokeList, setPokeList] = useState([]);
@@ -19,28 +20,27 @@ function PokemonList({ limit, page }) {
     }
   };
 
+  const fetchPokemonDetails = async () => {
+    try {
+      const details = await Promise.all(
+        pokeList.map(async (pokemon) => {
+          const response = await pokemonDAO.getPokeDetailByUrl({
+            url: pokemon.url,
+          });
+          return response.data;
+        })
+      );
+      setPokemonDetails(details);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     fetchData(page - 1, limit);
   }, [page]);
 
   useEffect(() => {
-    const fetchPokemonDetails = async () => {
-      try {
-        const details = await Promise.all(
-          pokeList.map(async (pokemon) => {
-            const response = await pokemonDAO.getPokeDetailByUrl({
-              url: pokemon.url,
-            });
-            return response.data;
-          })
-        );
-        setPokemonDetails(details);
-        // console.log(details);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     fetchPokemonDetails();
   }, [pokeList]);
 
@@ -80,7 +80,7 @@ function PokemonList({ limit, page }) {
               <td>{pokemon.height}</td>
               <td>{pokemon.weight}</td>
               <td>
-                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                <img src={pokemon.sprites.front_default} alt={pokemon.name} loading="lazy" />
               </td>
             </tr>
           ))}

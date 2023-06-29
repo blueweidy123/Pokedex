@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./PokemonDetail.css"
-import NavBar from "./NavBar";
+import NavBar from "../Navbar/NavBar";
+import axios from "axios";
 
 function PokemonDetail() {
   const { pokemonName } = useParams();
   const [pokemon, setPokemon] = useState(null);
   const [selectedObject, setSelectedObject] = useState(null);
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+      setPokemon(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-      .then((response) => response.json())
-      .then((data) => setPokemon(data));
+    fetchData();
   }, [pokemonName]);
 
   if (!pokemon) {
@@ -19,6 +28,9 @@ function PokemonDetail() {
   }
 
   console.log(pokemon);
+  console.log("pokemon sprite");
+  console.log(pokemon.sprites);
+
 
   const handleObjectClick = (objectKey) => {
     setSelectedObject(objectKey);
@@ -92,7 +104,23 @@ function PokemonDetail() {
       <main className="pd-container">
         <section className="p-preview">
           <h1>{pokemon.name}</h1>
-          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+          <div className="poke-sprites">
+            <div className="main-sprites">
+              <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
+              {/* <img src={pokemon.sprites.front_default} alt={pokemon.name} /> */}
+            </div>
+            <div className="sub-sprites">
+              <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
+              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+              <img src={pokemon.sprites.back_default} alt={pokemon.name} />
+              {/* <img src={pokemon.sprites.front_female} alt={pokemon.name} /> */}
+              {/* <img src={pokemon.sprites.back_female} alt={pokemon.name} /> */}
+              <img src={pokemon.sprites.front_shiny} alt={pokemon.name} />
+              <img src={pokemon.sprites.back_shiny} alt={pokemon.name} />
+              {/* <img src={pokemon.sprites.front_shiny_female} alt={pokemon.name} /> */}
+              {/* <img src={pokemon.sprites.back_shiny_female} alt={pokemon.name} /> */}
+            </div>
+          </div>
         </section>
         <section className="pd-details">
           <table>
@@ -101,6 +129,11 @@ function PokemonDetail() {
           {nestedObjectTable && [nestedObjectTable]}
         </section>
       </main>
+      <section>
+        {/* {pokemon.sprites.map((spriteUrl, index) => (
+          <img key={index} src={spriteUrl} alt={`Sprite ${index}`} />
+        ))} */}
+      </section>
     </>
   );
 }

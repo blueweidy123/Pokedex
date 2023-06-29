@@ -8,6 +8,9 @@ class PokemonDAO {
       `${POKEMON_BASE_API}?offset=${offset * 10}&limit=${limit}`
     );
   }
+  getAllPokemons() {
+    return axios.get("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0");
+  }
   getPokeDetail({ pokeName }) {
     return axios.get(`${POKEMON_BASE_API}/${pokeName}`);
   }
