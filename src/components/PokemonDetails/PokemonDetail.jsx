@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import "./PokemonDetail.css"
 import NavBar from "../Navbar/NavBar";
 import axios from "axios";
-import pokemonDAO from "../../DAO/pokemonDAO";
-import { wait } from "@testing-library/user-event/dist/utils";
 
 function PokemonDetail() {
   const { pokemonName } = useParams();
@@ -12,6 +10,9 @@ function PokemonDetail() {
   const [pokemonSpecies, setPokemonSpecies] = useState(null);
   const [selectedObject, setSelectedObject] = useState(null);
   const [evoChain, setEvoChain] = useState(null);
+
+  const [evolutionChain, setEvolutionChain] = useState(null);
+
 
   const [selectedSprite, setSelectedSprite] = useState(null);
 
@@ -23,6 +24,7 @@ function PokemonDetail() {
     try {
       const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
       setPokemon(response.data);
+      setSelectedSprite(response.data.sprites.other.dream_world.front_default);
     } catch (error) {
       console.error(error);
     }
@@ -31,7 +33,6 @@ function PokemonDetail() {
   const fetchPokemonSpecies = async () => {
     try {
       const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}/`);
-      console.log(response.data);
       setPokemonSpecies(response.data);
     } catch (error) {
       console.error(error);
@@ -49,14 +50,18 @@ function PokemonDetail() {
 
   useEffect(() => {
     fetchPokemonData();
-    fetchPokemonSpecies();
-    fetchPokemonEvolChain();
   }, [pokemonName]);
 
   useEffect(() => {
-    console.log("pokemonSpecies");
-    console.log(pokemonSpecies);
+    fetchPokemonSpecies();
+  }, [pokemon]);
+
+  useEffect(() => {
+    if (pokemonSpecies) {
+      fetchPokemonEvolChain();
+    }
   }, [pokemonSpecies]);
+
 
   if (!pokemon) {
     return <div>Loading...</div>;
@@ -175,18 +180,27 @@ function PokemonDetail() {
         </section>
       </main>
       <section>
-        {/* {pokemon.sprites.map((spriteUrl, index) => (
-          <img key={index} src={spriteUrl} alt={`Sprite ${index}`} />
-        ))} */}
       </section>
       <section>
-        test 1 |
-        {pokemonName}
-        | test 3
-        {/* <p><a style={{ color: "red" }}>{pokemonSpecies.evolution_chain.url}</a></p> */}
-        <pre style={{ color: "wheat" }}>{JSON.stringify(pokemon, null, 2)}</pre>
-        <pre style={{ color: "wheat" }}>{JSON.stringify(evoChain, null, 2)}</pre>
+        {evoChain && (
+          <pre style={{ color: "wheat" }}>
+            {evoChain.chain.species && JSON.stringify(evoChain.chain.species, null, 2)}
+            <hr></hr>
+            {evoChain.chain.evolves_to.length > 0 && evoChain.chain.evolves_to[0].species && JSON.stringify(evoChain.chain.evolves_to[0].species, null, 2)}
+            <hr></hr>
+            {evoChain.chain.evolves_to.length > 0 && evoChain.chain.evolves_to[0].evolves_to.length > 0 && evoChain.chain.evolves_to[0].evolves_to[0].species && JSON.stringify(evoChain.chain.evolves_to[0].evolves_to[0].species, null, 2)}
+          </pre>
+        )}
       </section>
+      <section>
+        {evoChain && (
+          <pre style={{ color: "red" }}>
+            {JSON.stringify(evolutionChain, null, 2)}
+          </pre>
+        )}
+      </section>
+
+
     </>
   );
 }
