@@ -3,34 +3,64 @@ import { useParams } from "react-router-dom";
 import "./PokemonDetail.css"
 import NavBar from "../Navbar/NavBar";
 import axios from "axios";
+import pokemonDAO from "../../DAO/pokemonDAO";
+import { wait } from "@testing-library/user-event/dist/utils";
 
 function PokemonDetail() {
   const { pokemonName } = useParams();
   const [pokemon, setPokemon] = useState(null);
+  const [pokemonSpecies, setPokemonSpecies] = useState(null);
   const [selectedObject, setSelectedObject] = useState(null);
+  const [evoChain, setEvoChain] = useState(null);
 
-  const fetchData = async () => {
+  const [selectedSprite, setSelectedSprite] = useState(null);
+
+  const handleClick = (sprite) => {
+    setSelectedSprite(sprite);
+  };
+
+  const fetchPokemonData = async () => {
     try {
       const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
       setPokemon(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchPokemonSpecies = async () => {
+    try {
+      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}/`);
       console.log(response.data);
+      setPokemonSpecies(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchPokemonEvolChain = async () => {
+    try {
+      const response = await axios.get(pokemonSpecies.evolution_chain.url);
+      setEvoChain(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    fetchData();
+    fetchPokemonData();
+    fetchPokemonSpecies();
+    fetchPokemonEvolChain();
   }, [pokemonName]);
+
+  useEffect(() => {
+    console.log("pokemonSpecies");
+    console.log(pokemonSpecies);
+  }, [pokemonSpecies]);
 
   if (!pokemon) {
     return <div>Loading...</div>;
   }
-
-  console.log(pokemon);
-  console.log("pokemon sprite");
-  console.log(pokemon.sprites);
-
 
   const handleObjectClick = (objectKey) => {
     setSelectedObject(objectKey);
@@ -106,19 +136,34 @@ function PokemonDetail() {
           <h1>{pokemon.name}</h1>
           <div className="poke-sprites">
             <div className="main-sprites">
-              <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
-              {/* <img src={pokemon.sprites.front_default} alt={pokemon.name} /> */}
+              <img src={selectedSprite} alt={pokemon.name} />
             </div>
             <div className="sub-sprites">
-              <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
-              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-              <img src={pokemon.sprites.back_default} alt={pokemon.name} />
-              {/* <img src={pokemon.sprites.front_female} alt={pokemon.name} /> */}
-              {/* <img src={pokemon.sprites.back_female} alt={pokemon.name} /> */}
-              <img src={pokemon.sprites.front_shiny} alt={pokemon.name} />
-              <img src={pokemon.sprites.back_shiny} alt={pokemon.name} />
-              {/* <img src={pokemon.sprites.front_shiny_female} alt={pokemon.name} /> */}
-              {/* <img src={pokemon.sprites.back_shiny_female} alt={pokemon.name} /> */}
+              <img
+                src={pokemon.sprites.other.dream_world.front_default}
+                alt={pokemon.name}
+                onClick={() => handleClick(pokemon.sprites.other.dream_world.front_default)}
+              />
+              <img
+                src={pokemon.sprites.front_default}
+                alt={pokemon.name}
+                onClick={() => handleClick(pokemon.sprites.front_default)}
+              />
+              <img
+                src={pokemon.sprites.back_default}
+                alt={pokemon.name}
+                onClick={() => handleClick(pokemon.sprites.back_default)}
+              />
+              <img
+                src={pokemon.sprites.front_shiny}
+                alt={pokemon.name}
+                onClick={() => handleClick(pokemon.sprites.front_shiny)}
+              />
+              <img
+                src={pokemon.sprites.back_shiny}
+                alt={pokemon.name}
+                onClick={() => handleClick(pokemon.sprites.back_shiny)}
+              />
             </div>
           </div>
         </section>
@@ -127,6 +172,14 @@ function PokemonDetail() {
             <tbody>{tableRows}</tbody>
           </table>
           {nestedObjectTable && [nestedObjectTable]}
+          <section>
+            test 1 |
+            {pokemonName}
+            | test 3
+            {/* <p><a style={{ color: "red" }}>{pokemonSpecies.evolution_chain.url}</a></p> */}
+            <pre style={{ color: "wheat" }}>{JSON.stringify(pokemon, null, 2)}</pre>
+            <pre style={{ color: "wheat" }}>{JSON.stringify(evoChain, null, 2)}</pre>
+          </section>
         </section>
       </main>
       <section>

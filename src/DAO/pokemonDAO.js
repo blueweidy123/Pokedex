@@ -17,6 +17,9 @@ class PokemonDAO {
   getPokeDetailByUrl({ url }) {
     return axios.get(url);
   }
+  getPokeSpecies({ pokename }) {
+    return axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokename}/`);
+  }
 }
 
 const pokemonDAO = new PokemonDAO();

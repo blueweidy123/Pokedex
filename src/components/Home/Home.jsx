@@ -63,7 +63,10 @@ class Home extends Component {
             <img src={bg} alt=""></img>
           </div>
         </div>
-        <div className="ph">
+        <div className="home-p-l">
+          
+        </div>
+        <div className="ph" style={{ display: "none" }}>
           <F2placeHolder></F2placeHolder>
           <F3placeHolder></F3placeHolder>
           <F4placeHolder></F4placeHolder>

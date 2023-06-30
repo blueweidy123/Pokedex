@@ -41,7 +41,6 @@ function PageNav({ page, onPageChange, onFragmentChange, active }) {
 
   return (
     <div className="fragments">
-      {page}
       <SearchInput></SearchInput>
       <div className="fragment-Set">
         <ul>
