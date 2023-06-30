@@ -172,20 +172,20 @@ function PokemonDetail() {
             <tbody>{tableRows}</tbody>
           </table>
           {nestedObjectTable && [nestedObjectTable]}
-          <section>
-            test 1 |
-            {pokemonName}
-            | test 3
-            {/* <p><a style={{ color: "red" }}>{pokemonSpecies.evolution_chain.url}</a></p> */}
-            <pre style={{ color: "wheat" }}>{JSON.stringify(pokemon, null, 2)}</pre>
-            <pre style={{ color: "wheat" }}>{JSON.stringify(evoChain, null, 2)}</pre>
-          </section>
         </section>
       </main>
       <section>
         {/* {pokemon.sprites.map((spriteUrl, index) => (
           <img key={index} src={spriteUrl} alt={`Sprite ${index}`} />
         ))} */}
+      </section>
+      <section>
+        test 1 |
+        {pokemonName}
+        | test 3
+        {/* <p><a style={{ color: "red" }}>{pokemonSpecies.evolution_chain.url}</a></p> */}
+        <pre style={{ color: "wheat" }}>{JSON.stringify(pokemon, null, 2)}</pre>
+        <pre style={{ color: "wheat" }}>{JSON.stringify(evoChain, null, 2)}</pre>
       </section>
     </>
   );
