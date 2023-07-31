@@ -12,6 +12,7 @@ function PokemonDetail() {
   const [isPokemonDataFetched, setPokemonDataFetched] = useState(false);
   const [isPokemonSpeciesFetched, setPokemonSpeciesFetched] = useState(false);
   const [isEvoChainFetched, setEvoChainFetched] = useState(false);
+  const [isDataFetched, setIsDataFetched] = useState(false);
 
   const navigate = useNavigate();
   const { pokemonName } = useParams();
@@ -68,22 +69,21 @@ function PokemonDetail() {
         }
       };
 
-      // Clear the existing species list before traversing the chain
-      // setSpeciesList([]);
-      setSpeciesList([...[], evoChain.chain.species]);
+      if (response.data.chain && response.data.chain.species) {
+        // Clear the existing species list before traversing the chain
+        setSpeciesList([response.data.chain.species]);
 
-      // Start recursive traversal from the initial chain data
-      if (response.data.chain && response.data.chain.evolves_to.length > 0) {
-        response.data.chain.evolves_to.forEach((evolution) => {
-          traverseEvolutionChain(evolution);
-        });
+        if (response.data.chain.evolves_to.length > 0) {
+          response.data.chain.evolves_to.forEach((evolution) => {
+            traverseEvolutionChain(evolution);
+          });
+        }
       }
-
-      console.log(speciesList);
     } catch (error) {
       console.error(error);
     }
   };
+
 
   const fetchPokemonEvoDetails = async () => {
     try {
@@ -125,13 +125,19 @@ function PokemonDetail() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetchPokemonData();
-        await fetchPokemonSpecies();
-        if (pokemonSpecies) {
-          await fetchPokemonEvolChain();
-        }
-        if (speciesList.length > 0) {
-          await fetchPokemonEvoDetails();
+        if (!isDataFetched) {
+          await fetchPokemonData();
+          if (pokemon) {
+            await fetchPokemonSpecies();
+          }
+          if (pokemonSpecies) {
+            await fetchPokemonEvolChain();
+          }
+          if (speciesList.length > 0) {
+            await fetchPokemonEvoDetails();
+            setIsDataFetched(true);
+          }
+
         }
       } catch (error) {
         console.error(error);
@@ -139,10 +145,11 @@ function PokemonDetail() {
     };
 
     fetchData();
-  }, [pokemonName, pokemon, pokemonSpecies, speciesList]);
+  }, [pokemon]);
+  // }, [pokemonName, pokemon, pokemonSpecies, speciesList]);
 
 
-  if (!pokemon || !speciesList) {
+  if (!isDataFetched) {
     return <div>Loading...</div>;
   }
 
