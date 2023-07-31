@@ -25,7 +25,7 @@ function PokemonDetail() {
   const [speciesList, setSpeciesList] = useState([]);
 
   const [evolutionChain, setEvolutionChain] = useState(null);
-  const [pokemonEvoDetails, setPokemonDetails] = useState([]);
+  const [pokemonEvoDetails, setPokemonEvoDetails] = useState([]);
 
   const [selectedSprite, setSelectedSprite] = useState(null);
 
@@ -90,12 +90,13 @@ function PokemonDetail() {
       const details = await Promise.all(
         speciesList.map(async (pokemon) => {
           const response = await pokemonDAO.getPokeDetailByUrl({
-            url: pokemon.url,
+            // url: pokemon.url,
+            url: `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`,
           });
           return response.data;
         })
       );
-      setPokemonDetails(details);
+      setPokemonEvoDetails(details);
     } catch (error) {
       console.error(error);
     }
@@ -152,6 +153,7 @@ function PokemonDetail() {
   if (!isDataFetched) {
     return <div>Loading...</div>;
   }
+  console.log(speciesList);
 
   return (
     <>
