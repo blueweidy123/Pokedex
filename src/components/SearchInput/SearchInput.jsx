@@ -64,7 +64,7 @@ function SearchInput(props) {
                             //     </> : <>
                             //         <li>nothing found!</li>
                             //     </>
-                            <li key={index} onClick={() => navigate(`./${pokemon.name}`)}>{pokemon.name}</li>
+                            <li key={index} onClick={() => window.location.href = `/pokelist/${pokemon.name}`}>{pokemon.name}</li>
                         ))
                     }
                 </ul>

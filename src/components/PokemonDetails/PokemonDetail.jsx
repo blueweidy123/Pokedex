@@ -102,27 +102,6 @@ function PokemonDetail() {
     }
   };
 
-
-  // useEffect(() => {
-  //   fetchPokemonData();
-  // }, [pokemonName]);
-
-  // useEffect(() => {
-  //   fetchPokemonSpecies();
-  // }, [pokemon]);
-
-  // useEffect(() => {
-  //   if (pokemonSpecies) {
-  //     fetchPokemonEvolChain();
-  //   }
-  // }, [pokemonSpecies]);
-
-  // useEffect(() => {
-  //   if (speciesList.length > 0) {
-  //     fetchPokemonEvoDetails();
-  //   }
-  // }, [speciesList]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -147,95 +126,165 @@ function PokemonDetail() {
 
     fetchData();
   }, [pokemon]);
-  // }, [pokemonName, pokemon, pokemonSpecies, speciesList]);
 
 
   if (!isDataFetched) {
     return <div>Loading...</div>;
   }
-  console.log(speciesList);
+  // console.log(speciesList);
+  console.log(pokemon);
+
 
   return (
     <>
       <NavBar></NavBar>
       <main className="pd-container">
-        <section className="p-preview">
-          <h1>{pokemon.name}</h1>
-          <div className="poke-sprites">
-            <div className="main-sprites">
-              <img src={selectedSprite} alt={pokemon.name} />
+        <div className="--r--1">
+          <section className="p-preview">
+            <h1>{pokemon.name}</h1>
+            <div className="poke-sprites">
+              <div className="main-sprites">
+                <img src={selectedSprite} alt={pokemon.name} />
+              </div>
+              <div className="sub-sprites">
+                <img
+                  src={pokemon.sprites.other.dream_world.front_default}
+                  alt={pokemon.name}
+                  onClick={() => handleClick(pokemon.sprites.other.dream_world.front_default)}
+                />
+                <img
+                  src={pokemon.sprites.front_default}
+                  alt={pokemon.name}
+                  onClick={() => handleClick(pokemon.sprites.front_default)}
+                />
+                <img
+                  src={pokemon.sprites.back_default}
+                  alt={pokemon.name}
+                  onClick={() => handleClick(pokemon.sprites.back_default)}
+                />
+                <img
+                  src={pokemon.sprites.front_shiny}
+                  alt={pokemon.name}
+                  onClick={() => handleClick(pokemon.sprites.front_shiny)}
+                />
+                <img
+                  src={pokemon.sprites.back_shiny}
+                  alt={pokemon.name}
+                  onClick={() => handleClick(pokemon.sprites.back_shiny)}
+                />
+              </div>
             </div>
-            <div className="sub-sprites">
-              <img
-                src={pokemon.sprites.other.dream_world.front_default}
-                alt={pokemon.name}
-                onClick={() => handleClick(pokemon.sprites.other.dream_world.front_default)}
-              />
-              <img
-                src={pokemon.sprites.front_default}
-                alt={pokemon.name}
-                onClick={() => handleClick(pokemon.sprites.front_default)}
-              />
-              <img
-                src={pokemon.sprites.back_default}
-                alt={pokemon.name}
-                onClick={() => handleClick(pokemon.sprites.back_default)}
-              />
-              <img
-                src={pokemon.sprites.front_shiny}
-                alt={pokemon.name}
-                onClick={() => handleClick(pokemon.sprites.front_shiny)}
-              />
-              <img
-                src={pokemon.sprites.back_shiny}
-                alt={pokemon.name}
-                onClick={() => handleClick(pokemon.sprites.back_shiny)}
-              />
-            </div>
-          </div>
-        </section>
+          </section>
 
-        <section className="evoTable">
-          <ul>
-            {speciesList.map((species, index) => (
-
-              <li key={index}>
-                <a href={`/pokelist/${species.name}`}>
-                  <strong>Name:</strong> {species.name}, <strong>URL:</strong> {species.url}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <div>
-            <h3>Evolution List</h3>
+          <section className="move-table">
+            <h1 style={{ color: "white", textAlign: "center" }}>Moves</h1>
             <table>
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Sprite</th>
+                  <td>index</td>
+                  <td>Moves</td>
+                  <td>Details</td>
                 </tr>
               </thead>
               <tbody>
-                {pokemonEvoDetails.map((p) => (
-                  <tr key={p.name}>
-                    <td>{p.name}</td>
+                {pokemon.moves.map((move, index) => (
+                  <tr>
+                    <td><span>{index}</span></td>
                     <td>
-                      {p.sprites ? (
-                        <img src={p.sprites.other.dream_world.front_default} alt={p.name} />
-                      ) : (
-                        <span>No sprite available</span>
-                      )}
+                      {move.move.name}
+                    </td>
+                    <td>
+                      <button>View</button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
-        </section >
+          </section>
+        </div>
+
+        <div className="--r--2">
+          <section className="evoTable">
+            <h1 style={{ color: "white", textAlign: "center" }}>Evolutions</h1>
+            <div className="evoSprites">
+              {pokemonEvoDetails.map((p) => (
+                <div onClick={() => window.location.href = `/pokelist/${p.name}`}>
+                  {p.sprites ? (
+                    <div className="evoItem">
+                      <div className="evocard">
+                        <img src={p.sprites.other.dream_world.front_default} alt={p.name} />
+                        <span>{p.name}</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <span>No sprite available</span>
+                  )}
+                </div>
+
+              ))}
+            </div>
+            <div>
+              <h1 style={{ color: "white" }}>Stats</h1>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Species:</th>
+                    <td>{pokemon.species.name}</td>
+                  </tr>
+                  <tr>
+                    <th>Type:</th>
+                    <td>
+                      {pokemon.types.map((pType) => (
+                        <span>{pType.type.name}  </span>
+                      ))}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Height:</th>
+                    <td>{pokemon.height}</td>
+                  </tr>
+                  <tr>
+                    <th>Weight:</th>
+                    <td>{pokemon.weight}</td>
+                  </tr>
+                  {pokemon.stats.map((stat) => (
+                    <tr>
+                      <th>Base {stat.stat.name}</th>
+                      <td>{stat.base_stat}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section className="abitily-table">
+            <h1 style={{ color: "white", textAlign: "center" }}>Abilities</h1>
+            <table>
+              <thead>
+                <tr>
+                  <td>Ability</td>
+                  <td>Details</td>
+                </tr>
+              </thead>
+              <tbody>
+                {pokemon.abilities.map((ability) => (
+                  <tr>
+                    <td>
+                      {ability.ability.name}
+                    </td>
+                    <td>
+                      <button>View</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        </div>
 
 
       </main>
-
     </>
   );
 }

@@ -1,30 +1,30 @@
 .pd-container {
-  flex-direction: row;
+  /* flex-direction: row; */
 
   padding: 1rem;
   margin-top: 7rem;
 
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: center; */
+
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1rem;
+  /* background-color: red; */
 }
 
 .p-preview {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  /* margin: 6rem 1rem 1rem auto; */
   background-color: var(--ele);
-  /* background-color: rgba(33, 52, 92, 0.496); */
   border-radius: 1rem;
   color: white;
   text-transform: capitalize;
-  /* background-color: red; */
   padding: 1rem;
-
-  /* box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
-    -6px -6px 10px -1px rgba(255, 255, 255, 0.15); */
+  height: min-content;
+  /* overflow: hidden; */
 }
 
 .pd-details {
@@ -32,6 +32,7 @@
 }
 
 .poke-sprites {
+  width: 100%;
 }
 
 .main-sprites {
@@ -45,6 +46,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  overflow-x: scroll;
 }
 
 .main-sprites img {
@@ -71,15 +73,64 @@
   padding: 1rem;
 }
 
-span {
+/* span {
   color: white;
 }
 
-.evoTable td {
-  padding: 1rem;
-  border-radius: 4px !important;
+li {
+  color: white;
+} */
+
+.evoSprites {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-rows: repeat(3, 1fr); */
 }
 
-li {
+.evoItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.evocard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.evoItem:hover img {
+  background-color: rgba(255, 255, 255, 0.281);
+}
+
+.evoItem img {
+  width: 128px;
+  height: 128px;
+  border-radius: 1rem;
+  flex-shrink: 0;
+  padding: 0.5rem;
+}
+
+.evoTable {
+  /* background-color: red; */
+}
+
+.ability-move-table {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.abitily-table,
+.move-table {
+  width: 100%;
+  /* padding: 1rem; */
+}
+
+.--r--2 span {
   color: white;
 }

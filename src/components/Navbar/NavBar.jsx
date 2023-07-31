@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBarStyle.css";
+import SearchInput from "../SearchInput/SearchInput";
 
 class NavBar extends Component {
   render() {
@@ -9,6 +10,8 @@ class NavBar extends Component {
         <div className="Logo">
           <h1>BWSolutino</h1>
         </div>
+
+        <SearchInput></SearchInput>
 
         <div className="nav-elements">
           <ul>
@@ -27,7 +30,7 @@ class NavBar extends Component {
             <li>
               <NavLink to="/pokelist">Library</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/ph2">PlaceHolder2</NavLink>
             </li>
             <li>
@@ -35,7 +38,7 @@ class NavBar extends Component {
             </li>
             <li>
               <NavLink to="/ph3">PlaceHolder3</NavLink>
-            </li>
+            </li> */}
             <div className="themeSwitch">
               <label>
                 <input type="checkbox" />
