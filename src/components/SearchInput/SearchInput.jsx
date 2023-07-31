@@ -33,12 +33,12 @@ function SearchInput(props) {
     const getAllPokemonName = async () => {
         try {
             const pokeNameResp = await pokemonDAO.getAllPokemons();
-            console.log("pokeNameResp.data");
-            console.log(pokeNameResp.data);
+            // console.log("pokeNameResp.data");
+            // console.log(pokeNameResp.data);
 
             setPokeNames(pokeNameResp.data.results);
-            console.log("pokeNames");
-            console.log(pokeNameResp.data.results);
+            // console.log("pokeNames");
+            // console.log(pokeNameResp.data.results);
 
         } catch (error) {
             console.log(error);

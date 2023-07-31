@@ -23,8 +23,8 @@
   /* background-color: red; */
   padding: 1rem;
 
-  box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
-    -6px -6px 10px -1px rgba(255, 255, 255, 0.15);
+  /* box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+    -6px -6px 10px -1px rgba(255, 255, 255, 0.15); */
 }
 
 .pd-details {
@@ -69,4 +69,17 @@
 .pd-details table {
   width: 100%;
   padding: 1rem;
+}
+
+span {
+  color: white;
+}
+
+.evoTable td {
+  padding: 1rem;
+  border-radius: 4px !important;
+}
+
+li {
+  color: white;
 }
